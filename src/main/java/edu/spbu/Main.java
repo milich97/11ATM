@@ -16,11 +16,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         denominations = new ArrayList();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Input available denominations");
         String s = bufferedReader.readLine();
         if (isNumber(s)) {
             boolean adding;
             for (String val : s.split(" ")) {
-                adding=true;
+                adding = true;
                 int denomination = Integer.parseInt(val);              //значение номинала
                 int counter = 0;
                 while (counter < denominations.size()) {
@@ -37,12 +38,13 @@ public class Main {
                 if (adding) denominations.add(counter, denomination);
             }
             usingOfDenominations = new int[denominations.size()];
+            System.out.println("Input note");
             int note = Integer.parseInt(bufferedReader.readLine());
             int lastEl = denominations.size() - 1;
             exchange(note, lastEl);
-            if(numberOfVariants==0) System.out.println("Impossible to exchange!");;
-        }
-        else System.out.println("You need to enter the Integer positive numbers");
+            if (numberOfVariants == 0) System.out.println("Impossible to exchange!");
+            ;
+        } else System.out.println("You need to enter the Integer positive numbers");
     }
 
 
@@ -69,19 +71,19 @@ public class Main {
     }
 
     private static void printf(int[] usingOfDenominations) {
-        for (int i = 0; i < usingOfDenominations.length; i++) {
-            System.out.print(usingOfDenominations[i] + " ");
-        }
-        System.out.println();
-
 //        for (int i = 0; i < usingOfDenominations.length; i++) {
-//            for (int j = 0; j < usingOfDenominations[i]; j++) {
-//                if ((i == (usingOfDenominations.length - 1)) && (j == (usingOfDenominations[i] - 1)))
-//                    System.out.print(denominations.get(i));
-//                else System.out.print(denominations.get(i) + "+");
-//            }
+//            System.out.print(usingOfDenominations[i] + " ");
 //        }
 //        System.out.println();
+//
+        for (int i = 0; i < usingOfDenominations.length; i++) {
+            for (int j = 0; j < usingOfDenominations[i]; j++) {
+                if ((i == (usingOfDenominations.length - 1)) && (j == (usingOfDenominations[i] - 1)))
+                    System.out.print(denominations.get(i));
+                else System.out.print(denominations.get(i) + " ");
+            }
+        }
+        System.out.println();
     }
 
     public static boolean isNumber(String str) {
